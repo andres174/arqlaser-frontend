@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-
+import { initFlowbite } from 'flowbite';
 @Component({
   selector: 'app-home-usuario',
   standalone: true,
@@ -8,5 +8,9 @@ import { Component } from '@angular/core';
   styleUrl: './home-usuario.component.css'
 })
 export class HomeUsuarioComponent {
+
+  ngOnInit(){
+    initFlowbite();
+  }
 
 }

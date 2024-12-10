@@ -4,3 +4,6 @@
 @import "primeicons/primeicons.css";
 @import "../public/assets/layout/styles/layout/layout.scss";
 @import "../node_modules/primeflex/primeflex.css";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
