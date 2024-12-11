@@ -3,6 +3,7 @@ import { Routes } from '@angular/router';
 import { AppLayoutComponent } from './layout/app.layout.component';
 import { HomeComponent } from './core/admin/home/home.component';
 import { HomeUsuarioComponent } from './core/user/home-usuario/home-usuario.component';
+import { AppLayoutUserComponent } from './userLayout/app-layout-user/app-layout-user.component';
 
 export const routes: Routes = [
     {
@@ -15,6 +16,9 @@ export const routes: Routes = [
     },
     {
         path:'',
-        component: HomeUsuarioComponent 
+        component: AppLayoutUserComponent,
+        children:[
+            {path:'', component:HomeUsuarioComponent}
+        ] 
     }
 ];
