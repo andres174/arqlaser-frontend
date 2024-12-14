@@ -6,10 +6,13 @@ import { HomeUsuarioComponent } from './core/user/home-usuario/home-usuario.comp
 import { AppLayoutUserComponent } from './userLayout/app-layout-user/app-layout-user.component';
 import { LoginComponent } from './core/auth/login/login.component';
 import { RegisterComponent } from './core/auth/register/register.component';
+import { adminGuardGuard } from './guards/admin-guard.guard';
+import { userGuardGuard } from './guards/user-guard.guard';
 
 export const routes: Routes = [
     {
         path: 'admin',
+        canActivate:[adminGuardGuard],
         component: AppLayoutComponent,
         children:[
             { path:'', component:HomeComponent }
@@ -18,6 +21,7 @@ export const routes: Routes = [
     },
     {
         path:'',
+        canActivate:[userGuardGuard],
         component: AppLayoutUserComponent,
         children:[
             {path:'', component:HomeUsuarioComponent}
