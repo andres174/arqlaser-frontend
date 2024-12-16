@@ -12,7 +12,7 @@ import { userGuardGuard } from './guards/user-guard.guard';
 export const routes: Routes = [
     {
         path: 'admin',
-        canActivate:[adminGuardGuard],
+       // canActivate:[adminGuardGuard],
         component: AppLayoutComponent,
         children:[
             { path:'', component:HomeComponent }
@@ -21,7 +21,7 @@ export const routes: Routes = [
     },
     {
         path:'',
-        canActivate:[userGuardGuard],
+       // canActivate:[userGuardGuard],
         component: AppLayoutUserComponent,
         children:[
             {path:'', component:HomeUsuarioComponent}
