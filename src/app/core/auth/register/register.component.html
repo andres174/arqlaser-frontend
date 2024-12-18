@@ -19,7 +19,7 @@
                     <div>
                         <label for="nombre" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nombres</label>
                         <input formControlName="nombre" type="text" name="nombres" id="nombres" class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="" required="">
-                        @if (registerForm.controls['nombre'].invalid && statusForm==false) {
+                        @if (registerForm.controls['nombre'].hasError('required') && statusForm==false) {
                             <div class="p-4 mb-4 mt-2 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
                                 Este campo es requerido.
                              </div>
@@ -28,7 +28,7 @@
                     <div>
                         <label for="apellido" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Apellidos</label>
                         <input formControlName="apellido" type="text" name="apellidos" id="apellidos" class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="" required="">
-                        @if (registerForm.controls['apellido'].invalid && statusForm==false) {
+                        @if (registerForm.controls['apellido'].hasError('required') && statusForm==false) {
                             <div class="p-4 mb-4 mt-2 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
                                 Este campo es requerido.
                              </div>
@@ -38,7 +38,7 @@
                     <div>
                         <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Correo electronico</label>
                         <input formControlName="email" type="email" name="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@company.com" required="">
-                        @if (registerForm.controls['email'].invalid && statusForm==false) {
+                        @if (registerForm.controls['email'].hasError('required') && statusForm==false) {
                             <div class="p-4 mb-4 mt-2 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
                                 Este campo es requerido.
                              </div>
@@ -63,7 +63,7 @@
                             </div>
                             <input formControlName="password"  [type]="showPassword ? 'text' : 'password'" name="password" id="password" placeholder="••••••••" class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="">
                           </div>
-                        @if (registerForm.controls['password'].invalid && statusForm==false) {
+                        @if (registerForm.controls['password'].hasError('required') && statusForm==false) {
                             <div class="p-4 mb-4 mt-2 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
                                 Este campo es requerido.
                              </div>

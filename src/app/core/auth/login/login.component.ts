@@ -1,5 +1,5 @@
 import { Component, signal } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '../../../services/auth/auth.service';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2'
@@ -12,27 +12,31 @@ import Swal from 'sweetalert2'
 })
 export class LoginComponent {
 
-  loginForm= signal<FormGroup>(
-    new FormGroup({
-      email: new FormControl('',[Validators.required, Validators.email]),
-      password: new FormControl('',[Validators.minLength(8), Validators.required]),
-    })
-  )
-  formStatus: boolean = true
+ loginForm!: FormGroup
+  statusForm: Boolean = true
+  showPassword: boolean = false;
 
 
   constructor(
     private authService:AuthService,
     private router:Router,
+     private formBuilder: FormBuilder,
+
   ){}
 
   ngOnInit(){
-
+    this.buildForm()
+  }
+  buildForm(){
+    this.loginForm = this.formBuilder.group({
+      email:['',[Validators.required,Validators.email]],
+      password:['',[Validators.required,Validators.minLength(8)]],
+    })
   }
 
   login() {
-    if (this.loginForm().valid) {
-      this.authService.Login(this.loginForm().value).subscribe({
+    if (this.loginForm.valid) {
+      this.authService.Login(this.loginForm.value).subscribe({
         next:(res) =>{
           this.authService.guardarToken(res)
           Swal.fire({
@@ -45,12 +49,19 @@ export class LoginComponent {
           res.typeUserId==2?this.router.navigate(['']):this.router.navigate(['admin'])
         },
         error: (err)=>{
+         
           console.log(err);
           
         }
       })
     }
+    else{
+      this.statusForm=false
+    }
    
+  }
+  changeVisibility() {
+    this.showPassword = !this.showPassword; 
   }
 
 }

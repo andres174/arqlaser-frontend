@@ -71,8 +71,5 @@ export class RegisterComponent {
           }
          
         }
- get getControls() {
-          return this.registerForm.controls
-  }
 
 }
