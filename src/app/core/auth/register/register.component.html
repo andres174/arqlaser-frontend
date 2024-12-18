@@ -15,21 +15,64 @@
                 <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
                     Crea tu cuenta ahora!
                 </h1>
-                <form [formGroup]="registerForm()" class="space-y-4 md:space-y-6" action="#">
+                <form [formGroup]="registerForm" class="space-y-4 md:space-y-6" action="#">
                     <div>
                         <label for="nombre" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nombres</label>
                         <input formControlName="nombre" type="text" name="nombres" id="nombres" class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="" required="">
-                    </div><div>
+                        @if (registerForm.controls['nombre'].invalid && statusForm==false) {
+                            <div class="p-4 mb-4 mt-2 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+                                Este campo es requerido.
+                             </div>
+                        }
+                    </div>
+                    <div>
                         <label for="apellido" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Apellidos</label>
                         <input formControlName="apellido" type="text" name="apellidos" id="apellidos" class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="" required="">
+                        @if (registerForm.controls['apellido'].invalid && statusForm==false) {
+                            <div class="p-4 mb-4 mt-2 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+                                Este campo es requerido.
+                             </div>
+                        }
                     </div>
+
                     <div>
                         <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Correo electronico</label>
                         <input formControlName="email" type="email" name="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@company.com" required="">
+                        @if (registerForm.controls['email'].invalid && statusForm==false) {
+                            <div class="p-4 mb-4 mt-2 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+                                Este campo es requerido.
+                             </div>
+                        }
+                        @if (registerForm.controls['email'].hasError('email')) {
+                            <div class="p-4 mb-4 mt-2 text-sm  text-yellow-800 rounded-lg bg-yellow-50 dark:bg-gray-800 dark:text-yellow-300" role="alert">
+                                El correo ingresado no es valido.
+                             </div>
+                        }
                     </div>
+                    
                     <div>
                         <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Contraseña</label>
-                        <input formControlName="password"  type="password" name="password" id="password" placeholder="••••••••" class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="">
+                        <div class="relative">
+                            <div class="absolute inset-y-0 end-0 flex items-center ps-3.5 ">
+                                <i 
+                                class="pi absolute right-3 top-1/2 transform -translate-y-1/2 cursor-pointer text-gray-600 dark:text-gray-300"
+                                [class.pi-eye-slash]="showPassword"
+                                [class.pi-eye]="!showPassword"
+                                (click)="changeVisibility()">
+                              </i>
+                            </div>
+                            <input formControlName="password"  [type]="showPassword ? 'text' : 'password'" name="password" id="password" placeholder="••••••••" class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="">
+                          </div>
+                        @if (registerForm.controls['password'].invalid && statusForm==false) {
+                            <div class="p-4 mb-4 mt-2 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+                                Este campo es requerido.
+                             </div>
+                        }
+                        @if (registerForm.controls['password'].hasError('pattern')) {
+                            <div class="p-4 mb-4 mt-2 text-sm  text-yellow-800 rounded-lg bg-yellow-50 dark:bg-gray-800 dark:text-yellow-300" role="alert">
+                                La contraseña debe contener numeros, caracteres especiales, mayusculas ademas de se mayor 8 caracteres
+                             </div>
+                        }
                     </div>
                     <!-- <div class="flex items-start">
                         <div class="flex items-center h-5">
